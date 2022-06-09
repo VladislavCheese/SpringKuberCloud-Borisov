@@ -62,9 +62,3 @@ Built images can be used to run apps in different ways. See the `build-scripts/c
   reloading of `ConfigMap`s are available. 
 * `kubernetes/autoscaling` - the same but with autoscaling based on the CPU usage. 
 
-Additional metrics
-==
-
-The `examinator` app exposes liveness and readiness probes as well as a custom 
-`PhaseOfTheMoonHealthIndicator`. Additionally, `mathematics` exposes `MetricsConfiguration` and 
-metrics internally.  
