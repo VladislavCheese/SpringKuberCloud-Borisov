@@ -1,8 +1,5 @@
-Spring Cloud goes Cloud
+Spring Kuber Cloud
 =
-
-This repository contains examples for the talk "Spring Cloud goes Cloud". The main focus
-of the talk is on running the Spring Boot applications using Docker and Kubernetes. 
 
 Available modules
 ==
