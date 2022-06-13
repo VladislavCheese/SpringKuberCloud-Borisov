@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author vladislav_syrov
+ * API для проверки ответов.
  */
 @RestController
 @RequestMapping("/exams")

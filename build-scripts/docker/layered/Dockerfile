@@ -3,6 +3,7 @@ FROM amazoncorretto:8
 ARG JAR_FOLDER
 WORKDIR /opt
 
+# Тут мы испльзуем слои на которые предварительно разложили jar файл
 ADD ${JAR_FOLDER}/spring-boot-loader/ ./
 ADD ${JAR_FOLDER}/dependencies/ ./
 ADD ${JAR_FOLDER}/snapshot-dependencies/ ./

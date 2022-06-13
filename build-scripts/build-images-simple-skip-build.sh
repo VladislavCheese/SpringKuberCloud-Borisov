@@ -7,16 +7,13 @@ function build_basic() {
   docker build -f ./build-scripts/docker/basic/Dockerfile \
     --build-arg JAR_FILE=${JAR_FILE} \
     -t ${APP_NAME}:latest \
-    -t ${APP_NAME}:naive .
+    -t ${APP_NAME}:simple .
 }
 
 APP_VERSION=0.0.1-SNAPSHOT
 
 # Building the app
 cd ..
-
-echo "Building JAR files"
-mvn clean package -DskipTests
 
 echo "Building Docker images"
 build_basic ./config-server/target/config-server-${APP_VERSION}.jar application/config-server

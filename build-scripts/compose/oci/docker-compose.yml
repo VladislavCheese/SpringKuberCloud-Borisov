@@ -1,5 +1,6 @@
 version: '2.4'
 
+#В oci образе нету возможности исплользвать healthcheck, для этого нужно написать свой build pack (достаточно сложно)
 services:
   service-discovery:
     image: application/discovery-service:oci

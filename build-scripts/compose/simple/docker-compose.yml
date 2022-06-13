@@ -2,7 +2,7 @@ version: '2.4'
 
 services:
   service-discovery:
-    image: application/discovery-service:naive
+    image: application/discovery-service:simple
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -14,7 +14,7 @@ services:
       - 8761:8080
 
   service-config:
-    image: application/config-server:naive
+    image: application/config-server:simple
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -28,12 +28,16 @@ services:
       DISCOVERY_URL: http://service-discovery:8080/eureka/
 
   examinator:
-    image: application/examinator:naive
+    image: application/examinator:simple
     depends_on:
       service-discovery:
         condition: service_healthy
-      service-config:
+      provider-math:
         condition: service_healthy
+      provider-history:
+        condition: service_healthy
+#      service-config:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -47,12 +51,12 @@ services:
       - 8093:8080
 
   provider-math:
-    image: application/provider-math:naive
+    image: application/provider-math:simple
     depends_on:
       service-discovery:
         condition: service_healthy
-      service-config:
-        condition: service_healthy
+#      service-config:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -64,12 +68,12 @@ services:
       CONFIG_URL: http://service-config:8080/
 
   provider-history:
-    image: application/provider-history:naive
+    image: application/provider-history:simple
     depends_on:
       service-discovery:
         condition: service_healthy
-      service-config:
-        condition: service_healthy
+#      service-config:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s

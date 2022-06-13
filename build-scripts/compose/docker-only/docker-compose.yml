@@ -2,7 +2,7 @@ version: '2.4'
 
 services:
   service-config:
-    image: application/config-server:naive
+    image: application/config-server:simple
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -13,10 +13,10 @@ services:
       EUREKA_CLIENT_ENABLED: "false"
 
   examinator:
-    image: application/examinator:naive
+    image: application/examinator:simple
     depends_on:
-      service-config:
-        condition: service_healthy
+#      service-config:
+#        condition: service_healthy
       provider-math:
         condition: service_healthy
       provider-history:
@@ -34,10 +34,10 @@ services:
       - 8093:8080
 
   provider-math:
-    image: application/provider-math:naive
-    depends_on:
-      service-config:
-        condition: service_healthy
+    image: application/provider-math:simple
+#    depends_on:
+#      service-config:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -49,10 +49,10 @@ services:
       CONFIG_URL: http://service-config:8080/
 
   provider-history:
-    image: application/provider-history:naive
-    depends_on:
-      service-config:
-        condition: service_healthy
+    image: application/provider-history:simple
+#    depends_on:
+#      service-config:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s

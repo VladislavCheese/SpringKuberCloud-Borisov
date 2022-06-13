@@ -14,10 +14,10 @@ import java.util.Random;
 @RefreshScope
 public class MathServiceImpl implements MathService {
 
-    @Value("${math.max}")
+    @Value("${math.max:1000}")
     private int max;
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
     @Override
     public Exercise getRandomExercise() {
